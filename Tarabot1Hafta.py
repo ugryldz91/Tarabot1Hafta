@@ -189,7 +189,7 @@ def check_conditions(df: pd.DataFrame) -> Tuple[bool, float]:
         return (False, float(last_rsi) if not pd.isna(last_rsi) else float("nan"))
 
     vol_ok = volume.iloc[i_cl] > 1.8 * prev3.mean()
-    cond_rsi = (not pd.isna(last_rsi)) and (last_rsi < 30.0)
+    cond_rsi = (not pd.isna(last_rsi)) and (last_rsi < 40.0)
     cond_bb  = (not pd.isna(last_bb_lower)) and (last_close < last_bb_lower)
 
     return (bool(cond_rsi and cond_bb and vol_ok),
@@ -233,8 +233,8 @@ async def send_telegram(text: str) -> None:
 
 def format_message(pairs: List[Tuple[str,float]], scanned: int) -> str:
     if not pairs:
-        return f"(4s) Kriterlere uygun coin bulunamadı.\nTaranan toplam coin: {scanned}"
-    lines = [f"(4s) Kriterlere uyan coinler (RSI) — Taranan toplam coin: {scanned}"]
+        return f"(1H) Kriterlere uygun coin bulunamadı.\nTaranan toplam coin: {scanned}"
+    lines = [f"(1H) Kriterlere uyan coinler (RSI) — Taranan toplam coin: {scanned}"]
     for sym, r in pairs:
         lines.append(f"- {sym}: RSI={r}")
     return "\n".join(lines)
