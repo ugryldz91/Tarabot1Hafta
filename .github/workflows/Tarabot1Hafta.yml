@@ -2,7 +2,7 @@ name: Binance Scanner 1W
 
 on:
   schedule:
-    - cron: "3 0,4,8,12,16,20 * * *"   # TR saatiyle 03:03, 07:03, 11:03, 15:03, 19:03, 23:03
+    - cron: '0 1 * * 1'   # TR saatiyle her P.tesi 4:00
   workflow_dispatch:
 
 jobs:
